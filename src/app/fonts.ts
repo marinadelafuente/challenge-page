@@ -1,15 +1,16 @@
 // app/fonts.ts
-import { Rubik } from "next/font/google";
-import { Inter } from "next/font/google";
+import { Rubik, Inter, Roboto_Mono, Open_Sans } from "next/font/google";
 
 const rubik = Rubik({
   subsets: ["latin"],
   variable: "--font-rubik",
 });
 
-const inter = Inter({ subsets: ["latin"] });
+export const inter = Inter({ subsets: ["latin"] });
 
-export const fonts = {
-  rubik,
-  inter,
-};
+export const roboto_mono = Roboto_Mono({
+  subsets: ["latin"],
+  display: "swap",
+});
+
+export const open_sans = Open_Sans({ subsets: ["latin"] });

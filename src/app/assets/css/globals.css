@@ -3,7 +3,8 @@
   --border-radius: 12px;
   --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New",
     monospace;
-
+  --main-color: 4, 177, 200;
+  --main-color-darker: 4, 121, 143;
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
@@ -21,30 +22,15 @@
   --card-border-rgb: 131, 134, 135;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-
-    --primary-glow: radial-gradient(rgba(1, 65, 255, 0.4), rgba(1, 65, 255, 0));
-    --secondary-glow: linear-gradient(to bottom right, rgba(1, 65, 255, 0), rgba(1, 65, 255, 0), rgba(1, 65, 255, 0.3));
-
-    --tile-start-rgb: 2, 13, 46;
-    --tile-end-rgb: 2, 5, 19;
-    --tile-border: conic-gradient(#ffffff80, #ffffff40, #ffffff30, #ffffff20, #ffffff10, #ffffff10, #ffffff80);
-
-    --callout-rgb: 20, 20, 20;
-    --callout-border-rgb: 108, 108, 108;
-    --card-rgb: 100, 100, 100;
-    --card-border-rgb: 200, 200, 200;
-  }
-}
-
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+}
+
+html {
+  background: rgb(var(--main-color)) !important;
+  height: 100%;
 }
 
 html,
@@ -56,7 +42,9 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  background: rgb(var(--main-color)) !important;
+  height: 100%;
+  min-height: 100%;
 }
 
 a {
@@ -65,11 +53,49 @@ a {
 }
 
 main {
-  background-color: #813981;
+  height: 100%;
+  min-height: 100%;
+  background: rgb(var(--main-color)) !important;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+button.chakra-menu__menu-button {
+  background: transparent;
+}
+
+.linkButton {
+  line-height: 1.2;
+  transition: all 0.2s cubic-bezier(0.08, 0.52, 0.52, 1);
+  border: 1px;
+  padding: 0.7rem 1rem;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  background: white;
+  border-color: #ccd0d5;
+  color: #4b4f56;
+}
+
+.linkButton:hover {
+  background: #ebedf0;
+}
+
+.linkButton:active {
+  bg: #dddfe2;
+  transform: scale(0.98);
+  border-color: #bec3c9;
+}
+
+.linkButton:focus {
+  boxshadow: "0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)";
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #fff;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
 }
