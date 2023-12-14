@@ -1,0 +1,101 @@
+:root {
+  --max-width: 1100px;
+  --border-radius: 12px;
+  --font-mono: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New",
+    monospace;
+  --main-color: 4, 177, 200;
+  --main-color-darker: 4, 121, 143;
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+
+  --primary-glow: conic-gradient(from 180deg at 50% 50%, #16abff33 0deg, #0885ff33 55deg, #54d6ff33 120deg, #0071ff33 160deg, transparent 360deg);
+  --secondary-glow: radial-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+
+  --tile-start-rgb: 239, 245, 249;
+  --tile-end-rgb: 228, 232, 233;
+  --tile-border: conic-gradient(#00000080, #00000040, #00000030, #00000020, #00000010, #00000010, #00000080);
+
+  --callout-rgb: 238, 240, 241;
+  --callout-border-rgb: 172, 175, 176;
+  --card-rgb: 180, 185, 188;
+  --card-border-rgb: 131, 134, 135;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  background: rgb(var(--main-color)) !important;
+  height: 100%;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  height: 100%;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--main-color)) !important;
+  height: 100%;
+  min-height: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+main {
+  height: 100%;
+  min-height: 100%;
+  background: rgb(var(--main-color)) !important;
+}
+
+button.chakra-menu__menu-button {
+  background: transparent;
+}
+
+.linkButton {
+  line-height: 1.2;
+  transition: all 0.2s cubic-bezier(0.08, 0.52, 0.52, 1);
+  border: 1px;
+  padding: 0.7rem 1rem;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  background: white;
+  border-color: #ccd0d5;
+  color: #4b4f56;
+}
+
+.linkButton:hover {
+  background: #ebedf0;
+}
+
+.linkButton:active {
+  bg: #dddfe2;
+  transform: scale(0.98);
+  border-color: #bec3c9;
+}
+
+.linkButton:focus {
+  boxshadow: "0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)";
+}
+
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #fff;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
