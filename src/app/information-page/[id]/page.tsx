@@ -6,7 +6,7 @@ import GenericModal from "@/app/components/modal";
 import { Box, Flex, Heading, List, ListItem, ModalBody, Text } from "@chakra-ui/react";
 
 // Types
-import { Location } from "@/types";
+import type { Location } from "@/types";
 
 export default function Page({ params }: { params: { id: string } }) {
   const GET_LOCATION = gql`
@@ -23,6 +23,7 @@ export default function Page({ params }: { params: { id: string } }) {
       }
     }
   `;
+  // Get request data for the chosen location
   const { loading, error, data } = useQuery(GET_LOCATION);
   if (loading) {
     return (

@@ -2,7 +2,6 @@
 import { useQuery, gql } from "@apollo/client";
 import { redirect } from "next/navigation";
 import { useContext } from "react";
-import { UsernameContext } from "../providers";
 
 // Components
 import Link from "next/link";
@@ -10,6 +9,9 @@ import { Box, Button, Card, CardHeader, CardBody, Heading, Grid, GridItem, Text 
 
 // Types
 import type { Locations } from "@/types";
+
+// Providers
+import { UsernameContext } from "../providers";
 
 const GET_LOCATIONS = gql`
   query {
@@ -23,13 +25,10 @@ const GET_LOCATIONS = gql`
 `;
 
 export default function InformationPage() {
+  // Get username from context
   let { savedUsername } = useContext(UsernameContext);
-
+  // Get request data
   const { loading, error, data } = useQuery(GET_LOCATIONS);
-
-  if (!savedUsername) {
-    return redirect("/");
-  }
 
   if (loading) {
     return (
@@ -40,6 +39,11 @@ export default function InformationPage() {
   }
 
   if (error) return <p>Error: {error.message}</p>;
+
+  // Return to homepage if there is no username
+  if (!savedUsername) {
+    return redirect("/");
+  }
 
   const locations: Locations = data.locations.results;
 
@@ -59,7 +63,9 @@ export default function InformationPage() {
                   </Heading>
                 </CardHeader>
                 <CardBody textAlign="center">
-                  <Button>View more</Button>
+                  <Button color="white" background="rgb(var(--main-color))" _hover={{ bg: "rgb(var(--main-color-darker))" }}>
+                    View more
+                  </Button>
                 </CardBody>
               </Card>
             </Link>
