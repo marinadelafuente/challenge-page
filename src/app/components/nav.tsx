@@ -14,9 +14,10 @@ import ProfileIcon from "../assets/icons/profileIcon";
 import { UsernameContext } from "../providers";
 
 export default function Nav() {
-  let { savedUsername } = useContext(UsernameContext);
   const [isProfileOpen, setIsProfileOpen] = useState<boolean>(false);
   const [isLogoutOpen, setIsLogoutOpen] = useState<boolean>(false);
+  // Get username from context
+  let { savedUsername } = useContext(UsernameContext);
   return (
     <>
       <Flex justify="space-between" align="center" zIndex={5} position="relative">

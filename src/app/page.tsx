@@ -1,23 +1,25 @@
 "use client";
-import { useContext, useState, useEffect } from "react";
-import { UsernameContext, JobTitleContext } from "./providers";
-import { redirect, useRouter, usePathname, useSearchParams } from "next/navigation";
+import { useContext, useState } from "react";
+import { redirect } from "next/navigation";
 
 // Components
 import { Box, Button, Heading } from "@chakra-ui/react";
 import ProfileModal from "./components/profileModal";
 
+// Providers
+import { UsernameContext, JobTitleContext } from "./providers";
+
 export default function Page() {
   const [isClosed, setIsClosed] = useState<boolean>(false);
-  const router = useRouter();
-  // router.refresh();
+
   const closeModal = () => {
     setIsClosed(true);
   };
-
+  // Get username and job title from context
   let { savedUsername } = useContext(UsernameContext);
   let { savedJobTitle } = useContext(JobTitleContext);
 
+  // Redirect to information page if there are login details
   if (savedUsername && savedJobTitle) {
     return redirect("/information-page");
   }

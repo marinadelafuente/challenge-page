@@ -1,20 +1,21 @@
 "use client";
-
 import { Suspense } from "react";
-import { inter, roboto_mono, open_sans } from "./fonts";
-import { Providers } from "./providers";
 
-// CSS
+// Styles
 import "./assets/css/globals.css";
+import { inter } from "./fonts";
 
 // Components
 import { Container, Box } from "@chakra-ui/react";
 import Nav from "./components/nav";
 
+// Providers
+import { Providers } from "./providers";
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body className={open_sans.className}>
+      <body className={inter.className}>
         <Providers>
           <header style={{ padding: "20px 40px", background: "#edfafe", borderBottom: "4px solid rgb(var(--main-color))" }}>
             <Suspense>

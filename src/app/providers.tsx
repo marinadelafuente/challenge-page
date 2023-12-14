@@ -5,9 +5,6 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { Dispatch, SetStateAction, createContext, useEffect, useMemo, useState } from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 
-// Types
-import { User } from "@/types";
-
 export const UsernameContext = createContext<{ savedUsername: string | null | undefined; setSavedUsername: Dispatch<SetStateAction<string | null | undefined>> }>({
   savedUsername: null,
   setSavedUsername: () => {},

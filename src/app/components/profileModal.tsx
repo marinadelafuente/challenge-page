@@ -14,9 +14,10 @@ import type { OnCloseProps } from "@/types";
 import { UsernameContext, JobTitleContext } from "../providers";
 
 export default function ProfileModal({ onCloseModal }: OnCloseProps) {
+  const { push } = useRouter();
+  // Get username and job title from context
   let { savedUsername, setSavedUsername } = useContext(UsernameContext);
   let { savedJobTitle, setSavedJobTitle } = useContext(JobTitleContext);
-  const { push } = useRouter();
 
   let [username, setUsername] = useState<string>(savedUsername ?? "");
   let [jobTitle, setJobTitle] = useState<string>(savedJobTitle ?? "");
@@ -49,6 +50,7 @@ export default function ProfileModal({ onCloseModal }: OnCloseProps) {
 
   const closeUrl = savedJobTitle ? "/information-page" : undefined;
 
+  // Close modal
   const onClose = () => {
     onCloseModal ? onCloseModal() : push(`${closeUrl}`);
   };
@@ -68,7 +70,7 @@ export default function ProfileModal({ onCloseModal }: OnCloseProps) {
             {savedUsername && !showUserNameAgain && (
               <FormControl isInvalid={!jobTitle && !savedJobTitle}>
                 <FormLabel>Job Titlte</FormLabel>
-                <Input id="jobTitle" type="text" placeholder="Enter your job title" value={jobTitle} onChange={(event) => setJobTitle(event?.target.value)} />
+                <Input id="jobTitle" type="text" placeholder="Enter your job title" value={jobTitle ?? savedJobTitle} onChange={(event) => setJobTitle(event?.target.value)} />
                 {/* {!value && <FormErrorMessage>{name} is required.</FormErrorMessage>} */}
               </FormControl>
             )}
@@ -99,7 +101,7 @@ export default function ProfileModal({ onCloseModal }: OnCloseProps) {
               type="submit"
               background="rgb(var(--main-color))"
               onClick={() => {
-                localStorage.setItem("savedJobTitle", jobTitle);
+                saveItems();
                 onClose();
                 push("/information-page");
               }}
