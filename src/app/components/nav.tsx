@@ -3,6 +3,7 @@ import { useContext, useState } from "react";
 
 // Components
 import Image from "next/image";
+import Link from "next/link";
 import { Heading, Button, Flex, IconButton, Menu, MenuButton, MenuList, MenuItem, MenuItemOption, MenuGroup, MenuOptionGroup, MenuDivider } from "@chakra-ui/react";
 import LogoutModal from "./logoutModal";
 import ProfileModal from "./profileModal";
@@ -22,7 +23,9 @@ export default function Nav() {
     <>
       <Flex justify="space-between" align="center" zIndex={5} position="relative">
         <Heading as="h1" fontSize="x-large" fontWeight="600" color="rgb(var(--main-color))">
-          <Image src="/logo.png" alt="Rick and Morty logo" width={200} height={57} priority />
+          <Link href="/">
+            <Image src="/logo.png" alt="Rick and Morty logo" width={200} height={57} priority />
+          </Link>
         </Heading>
         {savedUsername ? (
           <Menu gutter={4}>
@@ -38,7 +41,7 @@ export default function Nav() {
             </MenuList>
           </Menu>
         ) : (
-          <Button className="linkButton" onClick={() => setIsProfileOpen(true)} style={{ background: "rgb(var(--main-color-darker))", color: "white" }}>
+          <Button className="main-button" onClick={() => setIsProfileOpen(true)} style={{ background: "rgb(var(--main-color-darker))", color: "white" }}>
             Log In
           </Button>
         )}

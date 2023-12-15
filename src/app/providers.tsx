@@ -21,8 +21,8 @@ export function Providers({ children }: { children: React.ReactNode }) {
     cache: new InMemoryCache(),
   });
 
-  const [savedUsername, setSavedUsername] = useState<string | null | undefined>(null);
-  const [savedJobTitle, setSavedJobTitle] = useState<string | null | undefined>(null);
+  const [savedUsername, setSavedUsername] = useState<string | null | undefined>("");
+  const [savedJobTitle, setSavedJobTitle] = useState<string | null | undefined>("");
 
   useEffect(() => {
     if (typeof window !== "undefined" && window.localStorage) {
@@ -33,10 +33,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
       setSavedJobTitle(jobTitle);
     }
   }, [savedUsername, savedJobTitle]);
-
-  // const user: User = useMemo(() => {
-  //   return { savedUsername, savedJobTitle };
-  // }, [savedUsername, savedJobTitle]);
 
   return (
     <ChakraProvider>

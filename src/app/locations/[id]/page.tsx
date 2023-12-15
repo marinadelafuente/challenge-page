@@ -36,7 +36,7 @@ export default function Page({ params }: { params: { id: string } }) {
 
   const location: Location = data.location;
   return (
-    <GenericModal isShown={true} title={location.name.toUpperCase()} urlOnClose={"/information-page"}>
+    <GenericModal isShown={true} title={location.name.toUpperCase()} urlOnClose={"/locations"}>
       <ModalBody>
         <Flex alignItems="center" gap={3} mb="3">
           <Heading as="h2" size="md" color={"rgb(var(--main-color-darker))"}>

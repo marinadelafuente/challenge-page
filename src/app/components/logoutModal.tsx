@@ -28,7 +28,7 @@ export default function LogoutModal({ onCloseModal }: OnCloseProps) {
         <Button variant="outline" w="100%" mb={4} borderColor="rgb(var(--main-color))" onClick={() => onCloseModal()}>
           Cancel
         </Button>
-        <Button w="100%" background="rgb(var(--main-color))" color="white" onClick={() => logout()}>
+        <Button w="100%" className="main-button" onClick={() => logout()}>
           Log Out
         </Button>
       </ModalBody>

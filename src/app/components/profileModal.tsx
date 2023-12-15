@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { MouseEventHandler, useState } from "react";
 import { useContext } from "react";
 
 // Components
@@ -39,8 +39,14 @@ export default function ProfileModal({ onCloseModal }: OnCloseProps) {
         setSavedUsername(username);
         localStorage.setItem("savedUsername", username);
       }
-      setSavedJobTitle(jobTitle);
-      localStorage.setItem("savedJobTitle", jobTitle);
+      if (savedJobTitle !== jobTitle) {
+        setSavedJobTitle(jobTitle);
+        localStorage.setItem("savedJobTitle", jobTitle);
+      }
+      if ((event?.target as Element)?.id === "login-button") {
+        onClose();
+        push("/locations");
+      }
       setUpdated(true);
       setTimeout(() => {
         setUpdated(false);
@@ -48,7 +54,7 @@ export default function ProfileModal({ onCloseModal }: OnCloseProps) {
     }
   };
 
-  const closeUrl = savedJobTitle ? "/information-page" : undefined;
+  const closeUrl = savedJobTitle ? "/locations" : undefined;
 
   // Close modal
   const onClose = () => {
@@ -63,15 +69,13 @@ export default function ProfileModal({ onCloseModal }: OnCloseProps) {
             {(savedJobTitle || !savedUsername || showUserNameAgain) && (
               <FormControl isInvalid={!username && !savedUsername} mb={savedUsername ? "6" : "0"}>
                 <FormLabel>Username</FormLabel>
-                <Input id="username" type="text" placeholder="Enter your username" value={username ?? savedUsername} onChange={(event) => setUsername(event?.target.value)} />
-                {/* {!value && <FormErrorMessage>{name} is required.</FormErrorMessage>} */}
+                <Input autoFocus id="username" type="text" placeholder="Enter your username" value={username ?? savedUsername} onChange={(event) => setUsername(event?.target.value)} />
               </FormControl>
             )}
             {savedUsername && !showUserNameAgain && (
               <FormControl isInvalid={!jobTitle && !savedJobTitle}>
                 <FormLabel>Job Titlte</FormLabel>
-                <Input id="jobTitle" type="text" placeholder="Enter your job title" value={jobTitle ?? savedJobTitle} onChange={(event) => setJobTitle(event?.target.value)} />
-                {/* {!value && <FormErrorMessage>{name} is required.</FormErrorMessage>} */}
+                <Input autoFocus id="jobTitle" type="text" placeholder="Enter your job title" value={jobTitle ?? savedJobTitle} onChange={(event) => setJobTitle(event?.target.value)} />
               </FormControl>
             )}
           </form>
@@ -96,20 +100,11 @@ export default function ProfileModal({ onCloseModal }: OnCloseProps) {
             {savedUsername && !jobTitle ? "Back" : "Cancel"}
           </Button>
           {!savedJobTitle && savedUsername ? (
-            <Button
-              isDisabled={!savedJobTitle && !jobTitle}
-              type="submit"
-              background="rgb(var(--main-color))"
-              onClick={() => {
-                saveItems();
-                onClose();
-                push("/information-page");
-              }}
-            >
+            <Button id="login-button" isDisabled={!savedJobTitle && !jobTitle} type="submit" className="main-button" onClick={saveItems}>
               Log In
             </Button>
           ) : (
-            <Button isDisabled={!savedUsername && !username} isLoading={false} type="submit" color="white" background="rgb(var(--main-color))" onClick={saveItems}>
+            <Button isDisabled={!savedUsername && !username} isLoading={false} type="submit" className="main-button" onClick={saveItems}>
               {savedUsername ? "Update details" : "Continue"}
             </Button>
           )}
