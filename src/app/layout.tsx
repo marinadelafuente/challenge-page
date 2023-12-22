@@ -1,16 +1,21 @@
-"use client";
 import { Suspense } from "react";
+import type { Metadata } from "next";
 
 // Styles
 import "./assets/css/globals.css";
 import { inter } from "./fonts";
 
 // Components
-import { Container, Box } from "@chakra-ui/react";
 import Nav from "./components/nav";
 
 // Providers
 import { Providers } from "./providers";
+import MainContainer from "./components/mainContainer";
+
+export const metadata: Metadata = {
+  title: "Rick & Morty fan page",
+  description: "Find out all about the Rick and Morty locations",
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -23,11 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </Suspense>
           </header>
           <main>
-            <Container maxW="container.lg" h="100%" bg="rgb(var(--main-color))">
-              <Box w="100%" h="100%" py="10">
-                {children}
-              </Box>
-            </Container>
+            <MainContainer {...{ children }} />
           </main>
         </Providers>
       </body>

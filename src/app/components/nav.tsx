@@ -19,6 +19,7 @@ export default function Nav() {
   const [isLogoutOpen, setIsLogoutOpen] = useState<boolean>(false);
   // Get username from context
   let { savedUsername } = useContext(UsernameContext);
+
   return (
     <>
       <Flex justify="space-between" align="center" zIndex={5} position="relative">

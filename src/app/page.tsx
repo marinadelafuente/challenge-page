@@ -7,20 +7,17 @@ import Link from "next/link";
 import ProfileModal from "./components/profileModal";
 
 // Providers
-import { UsernameContext, JobTitleContext } from "./providers";
+import { UsernameContext } from "./providers";
 
 export default function Page() {
   // Get username and job title from context
   let { savedUsername } = useContext(UsernameContext);
-  let { savedJobTitle } = useContext(JobTitleContext);
 
   const [isClosed, setIsClosed] = useState<boolean>(!!savedUsername);
 
   const closeModal = () => {
     setIsClosed(true);
   };
-
-  // Redirect to information page if there are login details
 
   return (
     <>

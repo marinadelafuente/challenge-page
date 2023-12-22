@@ -2,7 +2,7 @@
 
 // Providers
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import { Dispatch, SetStateAction, createContext, useEffect, useMemo, useState } from "react";
+import { Dispatch, SetStateAction, createContext, useEffect, useState } from "react";
 import { ChakraProvider } from "@chakra-ui/react";
 
 export const UsernameContext = createContext<{ savedUsername: string | null | undefined; setSavedUsername: Dispatch<SetStateAction<string | null | undefined>> }>({
@@ -15,12 +15,12 @@ export const JobTitleContext = createContext<{ savedJobTitle: string | null | un
   setSavedJobTitle: () => {},
 });
 
-export function Providers({ children }: { children: React.ReactNode }) {
-  const client = new ApolloClient({
-    uri: "https://rickandmortyapi.com/graphql",
-    cache: new InMemoryCache(),
-  });
+const client = new ApolloClient({
+  uri: "https://rickandmortyapi.com/graphql",
+  cache: new InMemoryCache(),
+});
 
+export function Providers({ children }: { children: React.ReactNode }) {
   const [savedUsername, setSavedUsername] = useState<string | null | undefined>("");
   const [savedJobTitle, setSavedJobTitle] = useState<string | null | undefined>("");
 
